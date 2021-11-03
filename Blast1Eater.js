@@ -8,7 +8,7 @@ var currentCall = {'CallId': '',
 
 
 const AUTOANSWER_NUMBERS_REGEX = [/^70189.*@domain.com$/, 
-                                  /^.*14073580306/];
+                                  /^.*1555555555/];
 
 const REJECT_ADDITIONAL_CALLS = true;
 
