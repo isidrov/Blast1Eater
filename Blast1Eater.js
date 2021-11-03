@@ -7,8 +7,7 @@ var currentCall = {'CallId': '',
 };
 
 
-const AUTOANSWER_NUMBERS_REGEX = [/^70189.*@video.canada.ca$/, 
-                                  /^70189.*@video.canada.ca$/,
+const AUTOANSWER_NUMBERS_REGEX = [/^70189.*@domain.com$/, 
                                   /^.*14073580306/];
 
 const REJECT_ADDITIONAL_CALLS = true;
