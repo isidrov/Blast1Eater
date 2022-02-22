@@ -12,6 +12,10 @@ const AUTOANSWER_NUMBERS_REGEX = [/^70189.*@domain.com$/,
 
 const REJECT_ADDITIONAL_CALLS = true;
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 function normaliseRemoteURI(number){
   var regex = /^(sip:|h323:|spark:|h320:|webex:|locus:)/gi;
   number = number.replace(regex, '');
@@ -72,6 +76,12 @@ function processCallAnswer(event){
   if(event == 'Answered' & currentCall['CallId'] != ''){
     
     console.log('Call Answered')
+    
+    console.log("sleeping for 500ms")
+    
+    sleep(500)
+              
+    console.log("waking-up")
 
     console.log('Sending DTMF to CallID: ' + currentCall['CallId'])
 
