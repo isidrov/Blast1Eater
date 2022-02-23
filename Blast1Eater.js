@@ -1,3 +1,8 @@
+// Original work from William Mills wimills@cisco.com
+// Contributed by Isidro Fernández ifernand@cisco.com
+
+
+
 import xapi from 'xapi';
 
 
@@ -12,9 +17,10 @@ const AUTOANSWER_NUMBERS_REGEX = [/^70189.*@domain.com$/,
 
 const REJECT_ADDITIONAL_CALLS = true;
 
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
+// Specify the delay in milliseconds after the call
+// is answered before the DTMF is sent
+
+const DTMF_SEND_DELAY = 6000;
 
 function normaliseRemoteURI(number){
   var regex = /^(sip:|h323:|spark:|h320:|webex:|locus:)/gi;
@@ -64,6 +70,16 @@ async function checkCall(event){
 
 }
 
+function sendDTMF(){
+
+  xapi.Command.Call.DTMFSend(
+      { CallId: currentCall['CallId'], DTMFString: '1'}).catch(
+        (error) =>{
+          console.error(error);
+        }
+      );
+
+}
 
 function processCallAnswer(event){
 
@@ -77,20 +93,13 @@ function processCallAnswer(event){
     
     console.log('Call Answered')
     
-    console.log("sleeping for 500ms")
-    
-    sleep(500)
+   
               
     console.log("waking-up")
 
     console.log('Sending DTMF to CallID: ' + currentCall['CallId'])
 
-    xapi.Command.Call.DTMFSend(
-    { CallId: currentCall['CallId'], DTMFString: '1'}).catch(
-      (error) =>{
-        console.error(error);
-      }
-    );
+    setTimeout(sendDTMF, DTMF_SEND_DELAY);
 
   } 
   
