@@ -1,7 +1,13 @@
-// Original work from William Mills wimills@cisco.com
-// Contributed by Isidro Fernández ifernand@cisco.com
 
+/*
+ Original work from William Mills wimills@cisco.com
+ Contributed by Isidro Fernández ifernand@cisco.com
+ 
+ CE Macro to answer a CMS blast dial call and send automatically 1 DTMF key after a delay
+ 
+ This example is only a sample and is NOT guaranteed to be bug free and production quality.
 
+*/
 
 import xapi from 'xapi';
 
